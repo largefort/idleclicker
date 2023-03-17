@@ -3,11 +3,11 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-var money = 0;
+var money = 100;
 var moneyPerSecond = 0;
 var moneyPerClick = 1;
-var moneyPerClickUpgrade = 0;
-var moneyPerSecondUpgrade = 0;
+var moneyPerClickUpgrade = 10;
+var moneyPerSecondUpgrade = 1;
 var moneyPerClickUpgradeCost = 10;
 var moneyPerSecondUpgradeCost = 100;
 
@@ -113,6 +113,10 @@ loadButton.onclick = function() {
   load();
 };
 document.body.appendChild(loadButton);
+
+var graphicsSettings = document.createElement('div');
+graphicsSettings.innerHTML = '<style>button { background-color: black; color: white; }</style>';
+document.body.appendChild(graphicsSettings);
 });
         </script>
     </head>
