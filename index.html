@@ -3,10 +3,10 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-var money = 100;
+var money = 0;
 var moneyPerSecond = 0;
 var moneyPerClick = 1;
-var moneyPerClickUpgrade = 10;
+var moneyPerClickUpgrade = 0;
 var moneyPerSecondUpgrade = 0;
 var moneyPerClickUpgradeCost = 10;
 var moneyPerSecondUpgradeCost = 100;
@@ -16,7 +16,7 @@ moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
 moneyPerClickUpgradeButton.onclick = function() {
   if (money >= moneyPerClickUpgradeCost) {
     money -= moneyPerClickUpgradeCost;
-    moneyPerClickUpgrade += 1;
+    moneyPerClickUpgrade++;
     moneyPerClickUpgradeCost *= 2;
     moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
   }
@@ -28,7 +28,7 @@ moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
 moneyPerSecondUpgradeButton.onclick = function() {
   if (money >= moneyPerSecondUpgradeCost) {
     money -= moneyPerSecondUpgradeCost;
-    moneyPerSecondUpgrade += 1;
+    moneyPerSecondUpgrade++;
     moneyPerSecondUpgradeCost *= 2;
     moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
   }
@@ -76,47 +76,13 @@ setInterval(function() {
   moneyDisplay.innerHTML = 'Money: ' + money;
 }, 1000);
 
-var gameTheme = document.createElement('div');
-gameTheme.innerHTML = '<style>body { background-color: black; color: white; }</style>';
-document.body.appendChild(gameTheme);
+document.body.style.backgroundColor = '#000000';
+document.body.style.color = '#FFFFFF';
+document.body.style.fontFamily = 'monospace';
+document.body.style.fontSize = '20px';
+document.body.style.textAlign = 'center';
 
-var save = function() {
-  localStorage.setItem('money', money);
-  localStorage.setItem('moneyPerSecond', moneyPerSecond);
-  localStorage.setItem('moneyPerClick', moneyPerClick);
-  localStorage.setItem('moneyPerClickUpgrade', moneyPerClickUpgrade);
-  localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
-  localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
-  localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
-};
-
-var load = function() {
-  money = parseInt(localStorage.getItem('money'));
-  moneyPerSecond = parseInt(localStorage.getItem('moneyPerSecond'));
-  moneyPerClick = parseInt(localStorage.getItem('moneyPerClick'));
-  moneyPerClickUpgrade = parseInt(localStorage.getItem('moneyPerClickUpgrade'));
-  moneyPerSecondUpgrade = parseInt(localStorage.getItem('moneyPerSecondUpgrade'));
-  moneyPerClickUpgradeCost = parseInt(localStorage.getItem('moneyPerClickUpgradeCost'));
-  moneyPerSecondUpgradeCost = parseInt(localStorage.getItem('moneyPerSecondUpgradeCost'));
-};
-
-var saveButton = document.createElement('button');
-saveButton.innerHTML = 'Save';
-saveButton.onclick = function() {
-  save();
-};
-document.body.appendChild(saveButton);
-
-var loadButton = document.createElement('button');
-loadButton.innerHTML = 'Load';
-loadButton.onclick = function() {
-  load();
-};
-document.body.appendChild(loadButton);
-
-var graphicsSettings = document.createElement('div');
-graphicsSettings.innerHTML = '<style>button { background-color: black; color: white; }</style>';
-document.body.appendChild(graphicsSettings);
+setInterval(save, 1000);
 });
         </script>
     </head>
