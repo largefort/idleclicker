@@ -82,9 +82,9 @@ document.body.style.fontFamily = 'monospace';
 document.body.style.fontSize = '15px';
 document.body.style.textAlign = 'center';
 
-setInterval(save, 1000);
-
-function save() {
+var saveButton = document.createElement('button');
+saveButton.innerHTML = 'Save';
+saveButton.onclick = function() {
   localStorage.setItem('money', money);
   localStorage.setItem('moneyPerSecond', moneyPerSecond);
   localStorage.setItem('moneyPerClick', moneyPerClick);
@@ -92,7 +92,30 @@ function save() {
   localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
   localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
   localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
-}
+};
+document.body.appendChild(saveButton);
+
+var loadButton = document.createElement('button');
+loadButton.innerHTML = 'Load';
+loadButton.onclick = function() {
+  money = parseInt(localStorage.getItem('money'));
+  moneyPerSecond = parseInt(localStorage.getItem('moneyPerSecond'));
+  moneyPerClick = parseInt(localStorage.getItem('moneyPerClick'));
+  moneyPerClickUpgrade = parseInt(localStorage.getItem('moneyPerClickUpgrade'));
+  moneyPerSecondUpgrade = parseInt(localStorage.getItem('moneyPerSecondUpgrade'));
+  moneyPerClickUpgradeCost = parseInt(localStorage.getItem('moneyPerClickUpgradeCost'));
+  moneyPerSecondUpgradeCost = parseInt(localStorage.getItem('moneyPerSecondUpgradeCost'));
+  moneyDisplay.innerHTML = 'Money: ' + money;
+  moneyPerSecondDisplay.innerHTML = 'Money Per Second: ' + moneyPerSecond;
+  moneyPerClickDisplay.innerHTML = 'Money Per Click: ' + moneyPerClick;
+  moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerClickUpgrade;
+  moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
+  moneyPerClickUpgradeCostDisplay.innerHTML = 'Money Per Click Upgrade Cost: ' + moneyPerClickUpgradeCost;
+  moneyPerSecondUpgradeCostDisplay.innerHTML = 'Money Per Second Upgrade Cost: ' + moneyPerSecondUpgradeCost;
+  moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
+  moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
+};
+document.body.appendChild(loadButton);
 });
         </script>
     </head>
