@@ -79,10 +79,20 @@ setInterval(function() {
 document.body.style.backgroundColor = '#000000';
 document.body.style.color = '#FFFFFF';
 document.body.style.fontFamily = 'monospace';
-document.body.style.fontSize = '14px';
+document.body.style.fontSize = '15px';
 document.body.style.textAlign = 'center';
 
-setInterval(save, 10);
+setInterval(save, 1000);
+
+function save() {
+  localStorage.setItem('money', money);
+  localStorage.setItem('moneyPerSecond', moneyPerSecond);
+  localStorage.setItem('moneyPerClick', moneyPerClick);
+  localStorage.setItem('moneyPerClickUpgrade', moneyPerClickUpgrade);
+  localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
+  localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
+  localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
+}
 });
         </script>
     </head>
