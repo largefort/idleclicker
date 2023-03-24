@@ -3,13 +3,13 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-var money = 0;
-var moneyPerSecond = 0;
-var moneyPerClick = 1;
-var moneyPerClickUpgrade = 0;
-var moneyPerSecondUpgrade = 0;
-var moneyPerClickUpgradeCost = 10;
-var moneyPerSecondUpgradeCost = 100;
+var Peningar = 0;
+var peningarPerSecond = 0;
+var peningarPerClick = 1;
+var peningarPerClickUpgrade = 0;
+var peningarPerSecondUpgrade = 0;
+var peningarPerClickUpgradeCost = 10;
+var peningarPerSecondUpgradeCost = 100;
 
 var moneyPerClickUpgradeButton = document.createElement('button');
 moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
@@ -24,13 +24,13 @@ moneyPerClickUpgradeButton.onclick = function() {
 document.body.appendChild(moneyPerClickUpgradeButton);
 
 var moneyPerSecondUpgradeButton = document.createElement('button');
-moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
+moneyPerSecondUpgradeButton.innerHTML = 'Upgrade peningar Per Second';
 moneyPerSecondUpgradeButton.onclick = function() {
   if (money >= moneyPerSecondUpgradeCost) {
     money -= moneyPerSecondUpgradeCost;
     moneyPerSecondUpgrade += 1;
     moneyPerSecondUpgradeCost *= 2;
-    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
+    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Peningar Per Second (' + moneyPerSecondUpgradeCost + ')';
   }
 };
 document.body.appendChild(moneyPerSecondUpgradeButton);
@@ -52,7 +52,7 @@ moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerCl
 document.body.appendChild(moneyPerClickUpgradeDisplay);
 
 var moneyPerSecondUpgradeDisplay = document.createElement('div');
-moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
+moneyPerSecondUpgradeDisplay.innerHTML = 'Peningar Per Second Upgrade: ' + moneyPerSecondUpgrade;
 document.body.appendChild(moneyPerSecondUpgradeDisplay);
 
 var moneyPerClickUpgradeCostDisplay = document.createElement('div');
@@ -67,7 +67,7 @@ var moneyButton = document.createElement('button');
 moneyButton.innerHTML = 'Click for Money';
 moneyButton.onclick = function() {
   money += moneyPerClick + moneyPerClickUpgrade;
-  moneyDisplay.innerHTML = 'Money: ' + money;
+  moneyDisplay.innerHTML = 'Peningar: ' + money;
 };
 document.body.appendChild(moneyButton);
 
