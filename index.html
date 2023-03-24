@@ -3,118 +3,115 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-document.body.style.backgroundColor = '#000000';
-document.body.style.color = '#FFFFFF';
-document.body.style.fontFamily = 'monospace';
-document.body.style.fontSize = '15px';
-document.body.style.textAlign = 'center';
+var money = 0;
+var moneyPerSecond = 0;
+var moneyPerClick = 1;
+var moneyPerClickUpgrade = 0;
+var moneyPerSecondUpgrade = 0;
+var moneyPerClickUpgradeCost = 10;
+var moneyPerSecondUpgradeCost = 100;
 
-var peningar = 0;
-var peningarPerSecond = 0;
-var peningarPerClick = 1;
-var peningarPerClickUpgrade = 0;
-var peningarPerSecondUpgrade = 0;
-var peningarPerClickUpgradeCost = 10;
-var peningarPerSecondUpgradeCost = 100;
-
-var peningarPerClickUpgradeButton = document.createElement('button');
-peningarPerClickUpgradeButton.innerHTML = 'Uppfæra Smellur';
-peningarPerClickUpgradeButton.onclick = function() {
-  if (peningar >= peningarPerClickUpgradeCost) {
-    peningar -= peningarPerClickUpgradeCost;
-    peningarPerClickUpgrade += 1;
-    peningarPerClickUpgradeCost *= 2;
-    peningarPerClickUpgradeButton.innerHTML = 'Uppfæra Smellur  (' + peningarPerClickUpgradeCost + ')';
+var moneyPerClickUpgradeButton = document.createElement('button');
+moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
+moneyPerClickUpgradeButton.onclick = function() {
+  if (money >= moneyPerClickUpgradeCost) {
+    money -= moneyPerClickUpgradeCost;
+    moneyPerClickUpgrade += 1;
+    moneyPerClickUpgradeCost *= 2;
+    moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
   }
 };
-document.body.appendChild(peningarPerClickUpgradeButton);
+document.body.appendChild(moneyPerClickUpgradeButton);
 
-var peningarPerSecondUpgradeButton = document.createElement('button');
-peningarPerSecondUpgradeButton.innerHTML = 'Uppfæra Peningar';
-peningarPerSecondUpgradeButton.onclick = function() {
-  if (peningar >= peningarPerSecondUpgradeCost) {
-    peningar -= peningarPerSecondUpgradeCost;
-    peningarPerSecondUpgrade += 1;
-    peningarPerSecondUpgradeCost *= 2;
-    peningarPerSecondUpgradeButton.innerHTML = 'Uppfæra Peningar (' + peningarPerSecondUpgradeCost + ')';
+var moneyPerSecondUpgradeButton = document.createElement('button');
+moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
+moneyPerSecondUpgradeButton.onclick = function() {
+  if (money >= moneyPerSecondUpgradeCost) {
+    money -= moneyPerSecondUpgradeCost;
+    moneyPerSecondUpgrade += 1;
+    moneyPerSecondUpgradeCost *= 2;
+    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
   }
 };
-document.body.appendChild(peningarPerSecondUpgradeButton);
+document.body.appendChild(moneyPerSecondUpgradeButton);
 
-var peningarDisplay = document.createElement('div');
-peningarDisplay.innerHTML = 'Peningar: ' + peningar;
-document.body.appendChild(peningarDisplay);
+var moneyDisplay = document.createElement('div');
+moneyDisplay.innerHTML = 'Money: ' + money;
+document.body.appendChild(moneyDisplay);
 
-var peningarPerSecondDisplay = document.createElement('div');
-peningarPerSecondDisplay.innerHTML = 'Peningar Per Second: ' + peningarPerSecond;
-document.body.appendChild(peningarPerSecondDisplay);
+var moneyPerSecondDisplay = document.createElement('div');
+moneyPerSecondDisplay.innerHTML = 'Money Per Second: ' + moneyPerSecond;
+document.body.appendChild(moneyPerSecondDisplay);
 
-var peningarPerClickDisplay = document.createElement('div');
-peningarPerClickDisplay.innerHTML = 'Peningar Per Click: ' + peningarPerClick;
-document.body.appendChild(peningarPerClickDisplay);
+var moneyPerClickDisplay = document.createElement('div');
+moneyPerClickDisplay.innerHTML = 'Money Per Click: ' + moneyPerClick;
+document.body.appendChild(moneyPerClickDisplay);
 
-var peningarPerClickUpgradeDisplay = document.createElement('div');
-peningarPerClickUpgradeDisplay.innerHTML = 'Peningar Per Click Upgrade: ' + peningarPerClickUpgrade;
-document.body.appendChild(peningarPerClickUpgradeDisplay);
+var moneyPerClickUpgradeDisplay = document.createElement('div');
+moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerClickUpgrade;
+document.body.appendChild(moneyPerClickUpgradeDisplay);
 
-var peningarPerSecondUpgradeDisplay = document.createElement('div');
-peningarPerSecondUpgradeDisplay.innerHTML = 'Peningar Per Second Upgrade: ' + peningarPerSecondUpgrade;
-document.body.appendChild(peningarPerSecondUpgradeDisplay);
+var moneyPerSecondUpgradeDisplay = document.createElement('div');
+moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
+document.body.appendChild(moneyPerSecondUpgradeDisplay);
 
-var peningarPerClickUpgradeCostDisplay = document.createElement('div');
-peningarPerClickUpgradeCostDisplay.innerHTML = 'Peningar Per Click Upgrade Cost: ' + peningarPerClickUpgradeCost;
-document.body.appendChild(peningarPerClickUpgradeCostDisplay);
+var moneyPerClickUpgradeCostDisplay = document.createElement('div');
+moneyPerClickUpgradeCostDisplay.innerHTML = 'Money Per Click Upgrade Cost: ' + moneyPerClickUpgradeCost;
+document.body.appendChild(moneyPerClickUpgradeCostDisplay);
 
-var peningarPerSecondUpgradeCostDisplay = document.createElement('div');
-peningarPerSecondUpgradeCostDisplay.innerHTML = 'Peningar Per Second Upgrade Cost: ' + peningarPerSecondUpgradeCost;
-document.body.appendChild(peningarPerSecondUpgradeCostDisplay);
+var moneyPerSecondUpgradeCostDisplay = document.createElement('div');
+moneyPerSecondUpgradeCostDisplay.innerHTML = 'Money Per Second Upgrade Cost: ' + moneyPerSecondUpgradeCost;
+document.body.appendChild(moneyPerSecondUpgradeCostDisplay);
 
-var peningarButton = document.createElement('button');
-peningarButton.innerHTML = 'Smellur fyrir Peningar';
-peningarButton.onclick = function() {
-  peningar += peningarPerClick + peningarPerClickUpgrade;
-  peningarDisplay.innerHTML = 'Peningar: ' + peningar;
+var moneyButton = document.createElement('button');
+moneyButton.innerHTML = 'Click for Money';
+moneyButton.onclick = function() {
+  money += moneyPerClick + moneyPerClickUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
 };
-document.body.appendChild(peningarButton);
+document.body.appendChild(moneyButton);
 
 setInterval(function() {
-  peningar += peningarPerSecond + peningarPerSecondUpgrade;
-  peningarDisplay.innerHTML = 'Peningar: ' + peningar;
+  money += moneyPerSecond + moneyPerSecondUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
 }, 1000);
 
-setInterval(function() {
-  peningar += peningarPerSecond + peningarPerSecondUpgrade;
-  peningarDisplay.innerHTML = 'Peningar: ' + peningar;
-}, 1000);
+var gameTheme = document.createElement('div');
+gameTheme.innerHTML = '<style>body { background-color: black; color: white; }</style>';
+document.body.appendChild(gameTheme);
 
 var save = function() {
-  localStorage.setItem('peningar', peningar);
-  localStorage.setItem('peningarPerSecond', peningarPerSecond);
-  localStorage.setItem('peningarPerClick', peningarPerClick);
-  localStorage.setItem('peningarPerClickUpgrade', peningarPerClickUpgrade);
-  localStorage.setItem('peningarPerSecondUpgrade', peningarPerSecondUpgrade);
-  localStorage.setItem('peningarPerClickUpgradeCost', peningarPerClickUpgradeCost);
-  localStorage.setItem('peningarPerSecondUpgradeCost', peningarPerSecondUpgradeCost);
+  localStorage.setItem('money', money);
+  localStorage.setItem('moneyPerSecond', moneyPerSecond);
+  localStorage.setItem('moneyPerClick', moneyPerClick);
+  localStorage.setItem('moneyPerClickUpgrade', moneyPerClickUpgrade);
+  localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
+  localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
+  localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
 };
 
 var load = function() {
-  peningar = parseInt(localStorage.getItem('peningar'));
-  peningarPerSecond = parseInt(localStorage.getItem('peningarPerSecond'));
-  peningarPerClick = parseInt(localStorage.getItem('peningarPerClick'));
-  peningarPerClickUpgrade = parseInt(localStorage.getItem('peningarPerClickUpgrade'));
-  peningarPerSecondUpgrade = parseInt(localStorage.getItem('peningarPerSecondUpgrade'));
-  peningarPerClickUpgradeCost = parseInt(localStorage.getItem('peningarPerClickUpgradeCost'));
-  peningarPerSecondUpgradeCost = parseInt(localStorage.getItem('peningarPerSecondUpgradeCost'));
+  money = parseInt(localStorage.getItem('money'));
+  moneyPerSecond = parseInt(localStorage.getItem('moneyPerSecond'));
+  moneyPerClick = parseInt(localStorage.getItem('moneyPerClick'));
+  moneyPerClickUpgrade = parseInt(localStorage.getItem('moneyPerClickUpgrade'));
+  moneyPerSecondUpgrade = parseInt(localStorage.getItem('moneyPerSecondUpgrade'));
+  moneyPerClickUpgradeCost = parseInt(localStorage.getItem('moneyPerClickUpgradeCost'));
+  moneyPerSecondUpgradeCost = parseInt(localStorage.getItem('moneyPerSecondUpgradeCost'));
 };
 
 var saveButton = document.createElement('button');
-saveButton.innerHTML = 'Vista';
-saveButton.onclick = save;
+saveButton.innerHTML = 'Save';
+saveButton.onclick = function() {
+  save();
+};
 document.body.appendChild(saveButton);
 
 var loadButton = document.createElement('button');
-loadButton.innerHTML = 'Hlaða';
-loadButton.onclick = load;
+loadButton.innerHTML = 'Load';
+loadButton.onclick = function() {
+  load();
+};
 document.body.appendChild(loadButton);
 });
         </script>
@@ -129,3 +126,4 @@ document.body.appendChild(loadButton);
         </div>
     </body>
 </html>
+  
