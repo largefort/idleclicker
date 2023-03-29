@@ -23,7 +23,7 @@ peningarPerClickUpgradeButton.onclick = function() {
   if (peningar >= peningarPerClickUpgradeCost) {
     peningar -= peningarPerClickUpgradeCost;
     peningarPerClickUpgrade += 1;
-    peningarPerClickUpgradeCost *= 2;
+    peningarPerClickUpgradeCost *= 1;
     peningarPerClickUpgradeButton.innerHTML = 'Uppfæra Smellur  (' + peningarPerClickUpgradeCost + ')';
   }
 };
@@ -35,7 +35,7 @@ peningarPerSecondUpgradeButton.onclick = function() {
   if (peningar >= peningarPerSecondUpgradeCost) {
     peningar -= peningarPerSecondUpgradeCost;
     peningarPerSecondUpgrade += 1;
-    peningarPerSecondUpgradeCost *= 2;
+    peningarPerSecondUpgradeCost *= 1;
     peningarPerSecondUpgradeButton.innerHTML = 'Uppfæra Peningar (' + peningarPerSecondUpgradeCost + ')';
   }
 };
