@@ -3,7 +3,7 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-document.body.style.backgroundColor = '#000000';
+document.body.style.backgroundColor = '#00FF00';
 document.body.style.color = '#FFFFFF';
 document.body.style.fontFamily = 'monospace';
 document.body.style.fontSize = '15px';
@@ -23,7 +23,7 @@ peningarPerClickUpgradeButton.onclick = function() {
   if (peningar >= peningarPerClickUpgradeCost) {
     peningar -= peningarPerClickUpgradeCost;
     peningarPerClickUpgrade += 1;
-    peningarPerClickUpgradeCost *= 1;
+    peningarPerClickUpgradeCost *= 2;
     peningarPerClickUpgradeButton.innerHTML = 'Uppfæra Smellur  (' + peningarPerClickUpgradeCost + ')';
   }
 };
@@ -35,7 +35,7 @@ peningarPerSecondUpgradeButton.onclick = function() {
   if (peningar >= peningarPerSecondUpgradeCost) {
     peningar -= peningarPerSecondUpgradeCost;
     peningarPerSecondUpgrade += 1;
-    peningarPerSecondUpgradeCost *= 1;
+    peningarPerSecondUpgradeCost *= 2;
     peningarPerSecondUpgradeButton.innerHTML = 'Uppfæra Peningar (' + peningarPerSecondUpgradeCost + ')';
   }
 };
