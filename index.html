@@ -8,7 +8,6 @@ document.body.style.color = '#FFFFFF';
 document.body.style.fontFamily = 'Elder Futhark';
 document.body.style.fontSize = '15px';
 document.body.style.textAlign = 'center';
-requestAnimationFrame(60)
 var peningar = 0;
 var peningarPerSecond = 0;
 var peningarPerClick = 1;
@@ -81,12 +80,12 @@ setInterval(function() {
   peningar += peningarPerSecond + peningarPerSecondUpgrade;
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
 }, 1000);
-
+requestAnimationFrame(60)
 setInterval(function() {
   peningar += peningarPerSecond + peningarPerSecondUpgrade;
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
 }, 1000);
-
+requestAnimationFrame(60)
 var save = function() {
   localStorage.setItem('peningar', peningar);
   localStorage.setItem('peningarPerSecond', peningarPerSecond);
