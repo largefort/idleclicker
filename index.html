@@ -75,7 +75,7 @@ peningarButton.onclick = function() {
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
 };
 document.body.appendChild(peningarButton);
-
+requestAnimationFrame(60)
 setInterval(function() {
   peningar += peningarPerSecond + peningarPerSecondUpgrade;
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
