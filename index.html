@@ -76,11 +76,11 @@ peningarButton.onclick = function() {
 };
 document.body.appendChild(peningarButton);
 
-setInterval(function() {
+setInterval(function(60) {
   peningar += peningarPerSecond + peningarPerSecondUpgrade;
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
 }, 1000);
-setInterval(function() {
+setInterval(function(60) {
   peningar += peningarPerSecond + peningarPerSecondUpgrade;
   peningarDisplay.innerHTML = 'Peningar: ' + peningar;
 }, 1000);         
