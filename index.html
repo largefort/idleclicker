@@ -48,7 +48,6 @@
     </style>
   </head>
   <body>
-    <audio id="button-sound" src="button-click.mp3"></audio>
     <div id="game-container">
       <div id="game">
         <h1>Idle Game</h1>
@@ -67,7 +66,6 @@
       const clickPowerLevelDisplay = document.getElementById('click-power-level');
       const upgradeCostDisplay = document.getElementById('upgrade-cost');
       const upgradeButton = document.getElementById('upgrade-button');
-      const buttonSound = document.getElementById('button-sound');
       
       let points = 0;
       let clickPowerLevel = 1;
@@ -93,7 +91,6 @@
         points += clickPowerLevel;
         updatePointsDisplay();
         updateUpgradeButtonDisabled();
-        buttonSound.play();
       }
       
       function upgradeButtonClicked() {
@@ -104,7 +101,10 @@
         updateClickPowerLevelDisplay();
         updateUpgradeCostDisplay();
         updateUpgradeButtonDisabled();
-        buttonSound.play();
       }
       
-      clickButton.addEventListener('click', clickButtonClicked
+      clickButton.addEventListener('click', clickButtonClicked);
+      upgradeButton.addEventListener('click', upgradeButtonClicked);
+    </script>
+  </body>
+</html>
