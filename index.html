@@ -1,110 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
     <title>Idle Game</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      #game-container {
-        width: 90vw;
-        height: 90vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-      }
-      #game {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        color: white;
-        background-image: url('background.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-      h1 {
-        font-size: 64px;
-        text-shadow: 2px 2px 4px #000000;
-      }
-      p {
-        font-size: 32px;
-        text-shadow: 2px 2px 4px #000000;
-      }
-      button {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #00c853;
-        color: black;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        box-shadow: 2px 2px 4px #000000;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="game-container">
-      <div id="game">
-        <h1>Idle Game</h1>
-        <p>Click the button to earn points:</p>
-        <p>Points: <span id="points">0</span></p>
-        <button id="click-button">Click me!</button>
-        <p>Upgrade your click power:</p>
-        <p>Click power level: <span id="click-power-level">1</span></p>
-        <p>Cost to upgrade: <span id="upgrade-cost">10</span></p>
-        <button id="upgrade-button">Upgrade!</button>
-      </div>
-    </div>
-    <script>
-      const pointsDisplay = document.getElementById('points');
-      const clickButton = document.getElementById('click-button');
-      const clickPowerLevelDisplay = document.getElementById('click-power-level');
-      const upgradeCostDisplay = document.getElementById('upgrade-cost');
-      const upgradeButton = document.getElementById('upgrade-button');
-      
-      let points = 0;
-      let clickPowerLevel = 1;
-      let upgradeCost = 10;
-      
-      function updatePointsDisplay() {
-        pointsDisplay.textContent = points;
-      }
-      
-      function updateClickPowerLevelDisplay() {
-        clickPowerLevelDisplay.textContent = clickPowerLevel;
-      }
-      
-      function updateUpgradeCostDisplay() {
-        upgradeCostDisplay.textContent = upgradeCost;
-      }
-      
-      function updateUpgradeButtonDisabled() {
-        upgradeButton.disabled = points < upgradeCost;
-      }
-      
-      function clickButtonClicked() {
-        points += clickPowerLevel;
-        updatePointsDisplay();
-        updateUpgradeButtonDisabled();
-      }
-      
-      function upgradeButtonClicked() {
-        points -= upgradeCost;
-        clickPowerLevel++;
-        upgradeCost *= 2;
-        updatePointsDisplay();
-        updateClickPowerLevelDisplay();
-        updateUpgradeCostDisplay();
-        updateUpgradeButtonDisabled();
-      }
-      
-      clickButton.addEventListener('click', clickButtonClicked);
-      upgradeButton.addEventListener('click', upgradeButtonClicked);
-    </script>
+    <h1>Idle Game</h1>
+    <p>Click the button to earn points:</p>
+    <button id="clicker">Click me!</button>
+    <p>You have <span id="points">0</span> points.</p>
+    <h2>Upgrades</h2>
+    <button id="upgrade1">Upgrade 1 - Cost: <span id="upgrade1Cost">10</span></button>
+    <button id="upgrade2">Upgrade 2 - Cost: <span id="upgrade2Cost">50</span></button>
+    <button id="upgrade3">Upgrade 3 - Cost: <span id="upgrade3Cost">100</span></button>
+    <h2>Auto Clicker</h2>
+    <button id="autoClicker">Buy Auto Clicker - Cost: <span id="autoClickerCost">500</span></button>
+    <p>You have <span id="autoClickers">0</span> auto clickers.</p>
+    <script src="script.js"></script>
   </body>
 </html>
+
