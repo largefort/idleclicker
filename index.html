@@ -37,30 +37,6 @@
             font-size: 24px;
             margin-top: 20px;
         }
-
-        @media only screen and (max-width: 600px) {
-            button {
-                font-size: 18px;
-                padding: 8px;
-                margin: 5px;
-                width: 100px;
-            }
-
-            #money {
-                font-size: 18px;
-                margin-top: 20px;
-            }
-
-            #products {
-                font-size: 18px;
-                margin-top: 10px;
-            }
-
-            #workers {
-                font-size: 18px;
-                margin-top: 10px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -92,7 +68,7 @@
             localStorage.setItem("money", money);
             localStorage.setItem("products", products);
             localStorage.setItem("workers", workers);
-        }, 3);
+        }, 5000);
 
         produceButton.addEventListener("click", function() {
             products++;
@@ -113,4 +89,22 @@
                 money -= 10;
                 moneyDisplay.innerHTML = "Money: $" + money;
                 workers++;
-                workersDisplay.innerHTML = "Workers:
+                workersDisplay.innerHTML = "Workers: " + workers;
+            }
+        });
+
+        setInterval(function() {
+            products += workers;
+            productsDisplay.innerHTML = "Products: " + products;
+        }, 1000);
+
+        setInterval(function() {
+            if (products > 0) {
+                money += workers;
+                moneyDisplay.innerHTML = "Money: $" + money;
+                products -= workers;
+                productsDisplay.innerHTML = "Products: " + products;
+            }
+        }, 1000);
+
+        // Retrieve saved progress from localStorage
