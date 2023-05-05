@@ -41,14 +41,12 @@ h1 {
   padding: 20px;
 }
 
-button {
+button, .import-save-label {
   font-size: 1.2em;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 input[type="file"] {
   display: none;
 }
-
-.import-save-label {
-  font-size: 1.2em;
