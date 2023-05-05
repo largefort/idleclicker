@@ -1,58 +1,88 @@
-body {
-  font-family: sans-serif;
+let money = 0;
+let clickValue = 1;
+let autoClickers = 0;
+let autoClickerCost = 50;
+let quality = 1; // default quality level
+
+// Load saved game state from local storage
+function loadGame() {
+  const savedGame = JSON.parse(localStorage.getItem('idle-money-clicker-save'));
+  if (savedGame !== null) {
+    money = savedGame.money;
+    clickValue = savedGame.clickValue;
+    autoClickers = savedGame.autoClickers;
+    autoClickerCost = savedGame.autoClickerCost;
+    quality = savedGame.quality;
+    updateUI();
+  }
 }
 
-h1 {
-  text-align: center;
+// Save game state to local storage
+function saveGame() {
+  const gameSave = {
+    money,
+    clickValue,
+    autoClickers,
+    autoClickerCost,
+    quality,
+  };
+  localStorage.setItem('idle-money-clicker-save', JSON.stringify(gameSave));
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 20px;
+// Update the UI with the current game state
+function updateUI() {
+  document.getElementById('money').textContent = money.toFixed(2);
+  document.getElementById('click-value').textContent = clickValue.toFixed(2);
+  document.getElementById('auto-clickers').textContent = autoClickers;
+  document.getElementById('auto-clicker-cost').textContent = autoClickerCost.toFixed(2);
+  document.getElementById('quality').value = quality;
 }
 
-.money-display,
-.click-value-display,
-.auto-clickers-display,
-.auto-clicker-cost-display,
-.quality-slider-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+// Click for money button click handler
+document.getElementById('click-for-money').addEventListener('click', () => {
+  money += clickValue;
+  updateUI();
+});
 
-.money-display h2,
-.click-value-display h2,
-.auto-clickers-display h2,
-.auto-clicker-cost-display h2 {
-  margin: 0;
-}
+// Buy auto-clicker button click handler
+document.getElementById('buy-auto-clicker').addEventListener('click', () => {
+  if (money >= autoClickerCost) {
+    money -= autoClickerCost;
+    autoClickers++;
+    autoClickerCost *= 1.5; // increase cost of next auto-clicker
+    updateUI();
+  }
+});
 
-.buttons-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 20px;
-}
+// Quality slider change handler
+document.getElementById('quality').addEventListener('change', () => {
+  quality = parseFloat(document.getElementById('quality').value);
+  updateUI();
+});
 
-button {
-  font-size: 1.2em;
-  margin: 0 10px;
-}
+// Export save button click handler
+document.getElementById('export-save').addEventListener('click', () => {
+  const gameSave = localStorage.getItem('idle-money-clicker-save');
+  const blob = new Blob([gameSave], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'idle-money-clicker-save.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
-input[type="file"] {
-  display: none;
-}
+// Import save input change handler
+document.getElementById('import-save').addEventListener('change', () => {
+  const file = document.getElementById('import-save').files[0];
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const gameSave = event.target.result;
+    localStorage.setItem('idle-money-clicker-save', gameSave);
+    loadGame();
+  };
+  reader.readAsText(file);
+});
 
-.import-save-label {
-  font-size: 1.2em;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
+// Load the game state on page load
+loadGame();
