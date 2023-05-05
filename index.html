@@ -39,11 +39,16 @@
 <body>
     <h1>Idle Money Clicker</h1>
 
-    <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits!</p>
+    <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits! Each worker produces 1 product per second.</p>
 
     <button id="produceButton">Produce</button>
     <button id="sellButton">Sell</button>
     <button id="hireButton">Hire Worker</button>
+    <button id="workerUpgrades">
+        Upgrade Workers: $10
+        <br>
+        <span id="workerUpgradeLevel">Level 0</span>
+    </button>
     <button id="saveButton">Save Game</button>
     <button id="loadButton">Load Game</button>
 
@@ -55,15 +60,18 @@
         var money = 0;
         var products = 0;
         var workers = 0;
+        var workerUpgradeLevel = 0;
 
         var produceButton = document.getElementById("produceButton");
         var sellButton = document.getElementById("sellButton");
         var hireButton = document.getElementById("hireButton");
+        var workerUpgrades = document.getElementById("workerUpgrades");
         var saveButton = document.getElementById("saveButton");
         var loadButton = document.getElementById("loadButton");
         var moneyDisplay = document.getElementById("money");
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
+        var workerUpgradeLevelDisplay = document.getElementById("workerUpgradeLevel");
 
         produceButton.addEventListener("click", function() {
             products++;
@@ -88,22 +96,11 @@
             }
         });
 
-        saveButton.addEventListener("click", function() {
-            localStorage.setItem("money", money);
-            localStorage.setItem("products", products);
-            localStorage.setItem("workers", workers);
-            alert("Game saved!");
+        workerUpgrades.addEventListener("click", function() {
+            if (money >= 10) {
+                money -= 10;
+                moneyDisplay.innerHTML = "Money: $" + money;
+                workerUpgradeLevel++;
+                workerUpgradeLevelDisplay.innerHTML = "Level " + workerUpgradeLevel;
+            }
         });
-
-        loadButton.addEventListener("click", function() {
-            money = parseInt(localStorage.getItem("money")) || 0;
-            products = parseInt(localStorage.getItem("products")) || 0;
-            workers = parseInt(localStorage.getItem("workers")) || 0;
-            moneyDisplay.innerHTML = "Money: $" + money;
-            productsDisplay.innerHTML = "Products: " + products;
-            workersDisplay.innerHTML = "Workers: " + workers;
-            alert("Game loaded!");
-        });
-    </script>
-</body>
-</
