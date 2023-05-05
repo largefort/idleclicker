@@ -44,9 +44,6 @@
     <button id="produceButton">Produce</button>
     <button id="sellButton">Sell</button>
     <button id="hireButton">Hire Worker</button>
-    <button id="autoClickerButton">Auto Clicker ($50)</button>
-    <button id="saveButton">Save Game</button>
-    <button id="loadButton">Load Game</button>
 
     <p id="money">Money: $0</p>
     <p id="products">Products: 0</p>
@@ -56,14 +53,10 @@
         var money = 0;
         var products = 0;
         var workers = 0;
-        var autoClickers = 0;
 
         var produceButton = document.getElementById("produceButton");
         var sellButton = document.getElementById("sellButton");
         var hireButton = document.getElementById("hireButton");
-        var autoClickerButton = document.getElementById("autoClickerButton");
-        var saveButton = document.getElementById("saveButton");
-        var loadButton = document.getElementById("loadButton");
         var moneyDisplay = document.getElementById("money");
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
@@ -90,16 +83,6 @@
                 workersDisplay.innerHTML = "Workers: " + workers;
             }
         });
-
-        autoClickerButton.addEventListener("click", function() {
-            if (money >= 50) {
-                money -= 50;
-                moneyDisplay.innerHTML = "Money: $" + money;
-                autoClickers++;
-                autoClickerButton.innerHTML = "Auto Clicker ($" + (50 * (autoClickers + 1)) + ")";
-            }
-        });
-
-        saveButton.addEventListener("click", function() {
-            localStorage.setItem("money", money);
-            localStorage.setItem
+    </script>
+</body>
+</html>
