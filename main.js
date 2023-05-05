@@ -1,3 +1,4 @@
+
 let money = 0;
 let clickValue = 1;
 let autoClickers = 0;
@@ -10,4 +11,4 @@ function loadGame() {
   if (savedGame !== null) {
     money = savedGame.money;
     clickValue = savedGame.clickValue;
-    autoClickers = savedGame
+    autoClickers =
