@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Idle Money Clicker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
   <h1>Idle Money Clicker</h1>
   <div class="container">
     <div class="money-display">
       <p>Money:</p>
-      <h2>$<span id="money">0.00</span></h2>
+      <h2>$<span id="money">0.00</span></h2> 
     </div>
     <div class="click-value-display">
       <p>Click value:</p>
-      <h2>$<span id="click-value">1.00</span></h2>
+      <h2>$<span id="click-value">1.00</span></h2> 
     </div>
     <div class="auto-clickers-display">
       <p>Auto-clickers:</p>
-      <h2><span id="auto-clickers">0</span></h2>
+      <h2><span id="auto-clickers">0</span></h2> 
     </div>
     <div class="auto-clicker-cost-display">
       <p>Auto-clicker cost:</p>
-      <h2>$<span id="auto-clicker-cost">50.00</span></h2>
+      <h2>$<span id="auto-clicker-cost">50.00</span></h2> 
     </div>
     <div class="quality-slider-display">
       <p>Quality:</p>
-      <input type="range" id="quality" min="0.5" max="2" step="0.1" value="1">
+      <input type="range" id="quality" min="0.5" max="2" step="0.1" value="1"> 
     </div>
   </div>
   <div class="buttons-container">
     <button id="click-for-money">Click for Money</button>
     <button id="buy-auto-clicker">Buy Auto-Clicker</button>
-    <button id="export-save">Export Save</button>
+    <input type="file" id="import-save" style="display:none;"> 
     <label for="import-save" class="import-save-label">Import Save</label>
-    <input type="file" id="import-save">
+    <button id="export-save">Export Save</button>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js"></script> 
 </body>
 </html>
