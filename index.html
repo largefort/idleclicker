@@ -49,8 +49,6 @@
         <br>
         <span id="workerUpgradeLevel">Level 0</span>
     </button>
-    <button id="saveButton">Save Game</button>
-    <button id="loadButton">Load Game</button>
 
     <p id="money">Money: $0</p>
     <p id="products">Products: 0</p>
@@ -66,8 +64,6 @@
         var sellButton = document.getElementById("sellButton");
         var hireButton = document.getElementById("hireButton");
         var workerUpgrades = document.getElementById("workerUpgrades");
-        var saveButton = document.getElementById("saveButton");
-        var loadButton = document.getElementById("loadButton");
         var moneyDisplay = document.getElementById("money");
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
@@ -104,3 +100,10 @@
                 workerUpgradeLevelDisplay.innerHTML = "Level " + workerUpgradeLevel;
             }
         });
+
+        setInterval(function() {
+            products += workers * (workerUpgradeLevel + 1);
+            productsDisplay.innerHTML = "Products: " + products;
+        }, 1000);
+
+        setInterval(function() {
