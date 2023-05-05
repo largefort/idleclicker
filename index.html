@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Idle Money Clicker</title>
-  <link rel="stylesheet" href="style.css"> 
+    <title>Idle Money Clicker</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #money {
+            font-size: 36px;
+            font-weight: bold;
+            color: #00a8cc;
+        }
+        #clicker {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background-image: url('clicker.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+        #save-load {
+            text-align: center;
+        }
+        #save {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Idle Money Clicker</h1>
-  <div class="container">
-    <div class="money-display">
-      <p>Money:</p>
-      <h2>$<span id="money">0.00</span></h2> 
+    <div id="game-container">
+        <h1>Idle Money Clicker</h1>
+        <p>Your current money:</p>
+        <p id="money">0</p>
+        <div id="clicker"></div>
+        <p>Click the button to earn money!</p>
+        <audio id="money-sound" src="money-click.mp3"></audio>
+        <div id="save-load">
+            <button id="save">Save</button>
+            <button id="load">Load</button>
+        </div>
     </div>
-    <div class="click-value-display">
-      <p>Click value:</p>
-      <h2>$<span id="click-value">1.00</span></h2> 
-    </div>
-    <div class="auto-clickers-display">
-      <p>Auto-clickers:</p>
-      <h2><span id="auto-clickers">0</span></h2> 
-    </div>
-    <div class="auto-clicker-cost-display">
-      <p>Auto-clicker cost:</p>
-      <h2>$<span id="auto-clicker-cost">50.00</span></h2> 
-    </div>
-    <div class="quality-slider-display">
-      <p>Quality:</p>
-      <input type="range" id="quality" min="0.5" max="2" step="0.1" value="1"> 
-    </div>
-  </div>
-  <div class="buttons-container">
-    <button id="click-for-money">Click for Money</button>
-    <button id="buy-auto-clicker">Buy Auto-Clicker</button>
-    <input type="file" id="import-save" style="display:none;"> 
-    <label for="import-save" class="import-save-label">Import Save</label>
-    <button id="export-save">Export Save</button>
-  </div>
-  <script src="script.js"></script> 
+    <script>
+        // Load saved money from localStorage or start with 0
+        let money = parseInt(localStorage.getItem('money')) || 0;
+
+        // Update money display
+        const moneyDisplay = document.getElementById('money');
+        moneyDisplay.textContent = money;
+
+        // Add click listener to the clicker button
+        const clicker = document.getElementById('clicker');
+        clicker.addEventListener('click', () => {
+            money++;
+            moneyDisplay.textContent = money;
+            document.getElementById('money-sound').play();
+        });
+
+        // Add save and load listeners to the buttons
+        const saveButton = document.getElementById('save');
+        saveButton.addEventListener('click', () => {
+            localStorage.setItem('money', money);
+            alert('Game saved!');
+        });
+        const loadButton = document.getElementById('load');
+        loadButton.addEventListener('click', () => {
+            money = parseInt(localStorage.getItem('money')) || 0;
+            moneyDisplay.textContent = money;
+            alert('Game loaded!');
+        });
+    </script>
 </body>
 </html>
