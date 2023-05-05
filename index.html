@@ -52,8 +52,6 @@
     <p id="products">Products: 0</p>
     <p id="workers">Workers: 0</p>
 
-    <button id="saveButton">Save</button>
-
     <script>
         var money = 0;
         var products = 0;
@@ -65,7 +63,6 @@
         var moneyDisplay = document.getElementById("money");
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
-        var saveButton = document.getElementById("saveButton");
 
         produceButton.addEventListener("click", function() {
             products++;
@@ -103,8 +100,6 @@
                 productsDisplay.innerHTML = "Products: " + products;
             }
         }, 1000);
-
-        saveButton.addEventListener("click", function() {
-            localStorage.setItem("money", money);
-            localStorage.setItem("products", products);
-            localStorage.setItem("workers", workers);
+    </script>
+</body>
+</html>
