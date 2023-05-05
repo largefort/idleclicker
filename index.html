@@ -8,21 +8,24 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
         }
 
         h1 {
-            margin-top: 50px;
+            margin-top: 30px;
+            font-size: 24px;
         }
 
         button {
             font-size: 24px;
-            padding: 20px;
-            margin: 20px;
+            padding: 10px;
+            margin: 10px;
+            width: 150px;
         }
 
         #money {
-            font-size: 36px;
-            margin-top: 50px;
+            font-size: 24px;
+            margin-top: 30px;
         }
 
         #products {
@@ -39,35 +42,30 @@
 <body>
     <h1>Idle Money Clicker</h1>
 
-    <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits! Each worker produces 1 product per second.</p>
+    <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits! Each worker produces 1 product per second, and can also sell 1 product per second.</p>
 
     <button id="produceButton">Produce</button>
     <button id="sellButton">Sell</button>
     <button id="hireButton">Hire Worker</button>
-    <button id="workerUpgrades">
-        Upgrade Workers: $10
-        <br>
-        <span id="workerUpgradeLevel">Level 0</span>
-    </button>
 
     <p id="money">Money: $0</p>
     <p id="products">Products: 0</p>
     <p id="workers">Workers: 0</p>
 
+    <button id="saveButton">Save</button>
+
     <script>
         var money = 0;
         var products = 0;
         var workers = 0;
-        var workerUpgradeLevel = 0;
 
         var produceButton = document.getElementById("produceButton");
         var sellButton = document.getElementById("sellButton");
         var hireButton = document.getElementById("hireButton");
-        var workerUpgrades = document.getElementById("workerUpgrades");
         var moneyDisplay = document.getElementById("money");
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
-        var workerUpgradeLevelDisplay = document.getElementById("workerUpgradeLevel");
+        var saveButton = document.getElementById("saveButton");
 
         produceButton.addEventListener("click", function() {
             products++;
@@ -92,18 +90,21 @@
             }
         });
 
-        workerUpgrades.addEventListener("click", function() {
-            if (money >= 10) {
-                money -= 10;
-                moneyDisplay.innerHTML = "Money: $" + money;
-                workerUpgradeLevel++;
-                workerUpgradeLevelDisplay.innerHTML = "Level " + workerUpgradeLevel;
-            }
-        });
-
         setInterval(function() {
-            products += workers * (workerUpgradeLevel + 1);
+            products += workers;
             productsDisplay.innerHTML = "Products: " + products;
         }, 1000);
-    </script>
-</body>
+
+        setInterval(function() {
+            if (products > 0) {
+                money += workers;
+                moneyDisplay.innerHTML = "Money: $" + money;
+                products -= workers;
+                productsDisplay.innerHTML = "Products: " + products;
+            }
+        }, 1000);
+
+        saveButton.addEventListener("click", function() {
+            localStorage.setItem("money", money);
+            localStorage.setItem("products", products);
+            localStorage.setItem("workers", workers);
