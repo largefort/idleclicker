@@ -53,58 +53,58 @@
     <p id="workers">Workers: 0</p>
 
     <script>
-        var money = 0;
-        var products = 0;
-        var workers = 0;
+        // Initialize variables
+        let money = 0;
+        let products = 0;
+        let workers = 0;
 
-        var produceButton = document.getElementById("produceButton");
-        var sellButton = document.getElementById("sellButton");
-        var hireButton = document.getElementById("hireButton");
-        var moneyDisplay = document.getElementById("money");
-        var productsDisplay = document.getElementById("products");
-        var workersDisplay = document.getElementById("workers");
+        // Get DOM elements
+        const produceButton = document.getElementById("produceButton");
+        const sellButton = document.getElementById("sellButton");
+        const hireButton = document.getElementById("hireButton");
+        const moneyDisplay = document.getElementById("money");
+        const productsDisplay = document.getElementById("products");
+        const workersDisplay = document.getElementById("workers");
 
-        var saveInterval = setInterval(function() {
-            localStorage.setItem("money", money);
-            localStorage.setItem("products", products);
-            localStorage.setItem("workers", workers);
-        }, 5000);
+        // Update displays
+        function updateDisplays() {
+            moneyDisplay.innerHTML = `Money: $${money}`;
+            productsDisplay.innerHTML = `Products: ${products}`;
+            workersDisplay.innerHTML = `Workers: ${workers}`;
+        }
 
+        // Produce a product
         produceButton.addEventListener("click", function() {
             products++;
-            productsDisplay.innerHTML = "Products: " + products;
+            updateDisplays();
         });
 
+        // Sell a product
         sellButton.addEventListener("click", function() {
             if (products > 0) {
                 money += products;
-                moneyDisplay.innerHTML = "Money: $" + money;
                 products--;
-                productsDisplay.innerHTML = "Products: " + products;
+                updateDisplays();
             }
         });
 
+        // Hire a worker
         hireButton.addEventListener("click", function() {
             if (money >= 10) {
                 money -= 10;
-                moneyDisplay.innerHTML = "Money: $" + money;
                 workers++;
-                workersDisplay.innerHTML = "Workers: " + workers;
+                updateDisplays();
             }
         });
 
+        // Update products and money every second
         setInterval(function() {
             products += workers;
-            productsDisplay.innerHTML = "Products: " + products;
+            money += workers;
+            updateDisplays();
         }, 1000);
+    </script>
+</body>
+</html>
 
-        setInterval(function() {
-            if (products > 0) {
-                money += workers;
-                moneyDisplay.innerHTML = "Money: $" + money;
-                products -= workers;
-                productsDisplay.innerHTML = "Products: " + products;
-            }
-        }, 1000);
 
-        // Retrieve saved progress from localStorage
