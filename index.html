@@ -1,103 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Idle Money Clicker</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      #money {
-        font-size: 48px;
-        text-align: center;
-      }
-      #clicker {
-        font-size: 24px;
-        text-align: center;
-      }
-      #save {
-        margin-top: 24px;
-        text-align: center;
-      }
-      #load {
-        margin-top: 12px;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Idle Money Clicker</h1>
-    <p>Click the button to earn money!</p>
-    <p>Money: $<span id="money">0</span></p>
-    <button id="clicker">Click for Money</button>
-    <div id="save">
-      <button onclick="saveGame()">Export Save</button>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Idle Money Clicker</h1>
+        <p>Money: <span id="money">0</span></p>
+        <button id="clickBtn">Click for Money</button>
+        <p>Autoclickers: <span id="autoclickers">0</span></p>
+        <button id="buyAutoclickerBtn">Buy Autoclicker (costs <span id="autoclickerCost">10</span> money)</button>
+        <h2>Upgrades:</h2>
+        <ul id="upgrades"></ul>
+        <button id="buyUpgradeBtn">Buy Random Upgrade (costs <span id="upgradeCost">50</span> money)</button>
+        <div id="graphicsSettings">
+            <h2>Graphics Settings</h2>
+            <label for="graphicsQuality">Quality:</label>
+            <select id="graphicsQuality">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
     </div>
-    <div id="load">
-      <input type="file" id="file-input" />
-      <button onclick="loadGame()">Import Save</button>
-    </div>
-    <script>
-      let money = 0;
-      let autoclickerLevel = 0;
-      let autoclickerInterval = null;
-
-      function updateMoney() {
-        document.getElementById("money").textContent = money;
-      }
-
-      function addMoney(amount) {
-        money += amount;
-        updateMoney();
-      }
-
-      function autoclicker() {
-        addMoney(1 + autoclickerLevel * 0.1);
-      }
-
-      function upgradeAutoclicker() {
-        const cost = Math.pow(10, autoclickerLevel + 1);
-        if (money >= cost) {
-          money -= cost;
-          autoclickerLevel++;
-          clearInterval(autoclickerInterval);
-          autoclickerInterval = setInterval(autoclicker, 1000 / (1 + autoclickerLevel));
-          updateMoney();
-        }
-      }
-
-      function saveGame() {
-        const saveData = JSON.stringify({money: money, autoclickerLevel: autoclickerLevel});
-        const blob = new Blob([saveData], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "idle_money_clicker_save.txt");
-      }
-
-      function loadGame() {
-        const fileInput = document.getElementById("file-input");
-        if (fileInput.files.length > 0) {
-          const file = fileInput.files[0];
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            const saveData = event.target.result;
-            const saveObject = JSON.parse(saveData);
-            money = saveObject.money;
-            autoclickerLevel = saveObject.autoclickerLevel;
-            clearInterval(autoclickerInterval);
-            autoclickerInterval = setInterval(autoclicker, 1000 / (1 + autoclickerLevel));
-            updateMoney();
-          };
-          reader.readAsText(file);
-        }
-      }
-
-      document.getElementById("clicker").addEventListener("click", function() {
-        addMoney(1);
-        const audio = new Audio("money_click.mp3");
-        audio.play();
-      });
-
-      setInterval(function() {
-        addMoney(autoclickerLevel * 0.1);
-      }, 1000);
-    </script>
-  </body>
+    <audio id="moneySound">
+        <source src="money.mp3" type="audio/mpeg">
+        <source src="money.ogg" type="audio/ogg">
+    </audio>
+    <script src="script.js"></script>
+</body>
 </html>
