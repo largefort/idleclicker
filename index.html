@@ -64,6 +64,12 @@
         var productsDisplay = document.getElementById("products");
         var workersDisplay = document.getElementById("workers");
 
+        var saveInterval = setInterval(function() {
+            localStorage.setItem("money", money);
+            localStorage.setItem("products", products);
+            localStorage.setItem("workers", workers);
+        }, 1000);
+
         produceButton.addEventListener("click", function() {
             products++;
             productsDisplay.innerHTML = "Products: " + products;
