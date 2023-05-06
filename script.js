@@ -28,6 +28,7 @@ function loadGameState() {
     workers = parseInt(localStorage.getItem("workers"));
     workersElement.textContent = workers;
   }
+  alert("Game loaded!");
 }
 
 // Save game state to local storage
