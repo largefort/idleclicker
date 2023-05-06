@@ -4,106 +4,25 @@
     <title>Idle Money Clicker</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-        }
-
-        h1 {
-            margin-top: 30px;
-            font-size: 24px;
-        }
-
-        button {
-            font-size: 24px;
-            padding: 10px;
-            margin: 10px;
-            width: 150px;
-        }
-
-        #money {
-            font-size: 24px;
-            margin-top: 30px;
-        }
-
-        #products {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        #workers {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Idle Money Clicker</h1>
 
     <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits! Each worker produces 1 product per second, and can also sell 1 product per second.</p>
 
-    <button id="produceButton">Produce</button>
-    <button id="sellButton">Sell</button>
-    <button id="hireButton">Hire Worker</button>
+    <div class="buttonContainer">
+        <button id="produceButton">Produce</button>
+        <button id="sellButton">Sell</button>
+        <button id="hireButton">Hire Worker</button>
+    </div>
 
-    <p id="money">Money: $0</p>
-    <p id="products">Products: 0</p>
-    <p id="workers">Workers: 0</p>
+    <div class="displayContainer">
+        <p id="money">Money: $0</p>
+        <p id="products">Products: 0</p>
+        <p id="workers">Workers: 0</p>
+    </div>
 
-    <script>
-        // Initialize variables
-        let money = 0;
-        let products = 0;
-        let workers = 0;
-
-        // Get DOM elements
-        const produceButton = document.getElementById("produceButton");
-        const sellButton = document.getElementById("sellButton");
-        const hireButton = document.getElementById("hireButton");
-        const moneyDisplay = document.getElementById("money");
-        const productsDisplay = document.getElementById("products");
-        const workersDisplay = document.getElementById("workers");
-
-        // Update displays
-        function updateDisplays() {
-            moneyDisplay.innerHTML = `Money: $${money}`;
-            productsDisplay.innerHTML = `Products: ${products}`;
-            workersDisplay.innerHTML = `Workers: ${workers}`;
-        }
-
-        // Produce a product
-        produceButton.addEventListener("click", function() {
-            products++;
-            updateDisplays();
-        });
-
-        // Sell a product
-        sellButton.addEventListener("click", function() {
-            if (products > 0) {
-                money += products;
-                products--;
-                updateDisplays();
-            }
-        });
-
-        // Hire a worker
-        hireButton.addEventListener("click", function() {
-            if (money >= 10) {
-                money -= 10;
-                workers++;
-                updateDisplays();
-            }
-        });
-
-        // Update products and money every second
-        setInterval(function() {
-            products += workers;
-            money += workers;
-            updateDisplays();
-        }, 1000);
-    </script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
-
