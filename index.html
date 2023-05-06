@@ -7,31 +7,35 @@
 </head>
 <body>
     <h1>idle money clicker</h1>
-    <div class="container">
-        <div class="button-container">
-            <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
-            <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
-            <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
-        </div>
-        <div class="info-container">
-            <div class="info-row">
-                <p class="info-label">Money:</p>
-                <p class="info-value"><span id="money">0</span></p>
-            </div>
-            <div class="info-row">
-                <p class="info-label">Products:</p>
-                <p class="info-value"><span id="products">0</span></p>
-            </div>
-            <div class="info-row">
-                <p class="info-label">Workers:</p>
-                <p class="info-value"><span id="workers">0</span></p>
-            </div>
-        </div>
-        <div class="save-container">
-            <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
-            <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
-        </div>
+   <div class="button-container">
+    <button id="moneyButton" class="button money-button">
+        <i class="fas fa-dollar-sign"></i>
+        <span id="money">0</span> Money
+    </button>
+    <button id="produceButton" class="button">
+        <i class="fas fa-cog"></i>
+        <span id="products">0</span> Products
+    </button>
+    <button id="sellButton" class="button">
+        <i class="fas fa-money-bill-wave"></i>
+        Sell
+    </button>
+    <button id="hireButton" class="button">
+        <i class="fas fa-users"></i>
+        <span id="workers">0</span> Workers
+    </button>
+    <div class="save-container">
+        <button id="saveButton" class="button save-button">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="loadButton" class="button load-button">
+            <i class="fas fa-upload"></i>
+            Load
+        </button>
     </div>
+</div>
+
     <audio id="backgroundMusic" loop>
         <source src="audio/background_music.mp3" type="audio/mpeg">
     </audio>
