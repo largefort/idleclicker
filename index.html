@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Idle Money Clicker</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>idle money clicker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Idle Money Clicker</h1>
-
-    <p>You own a factory that produces products. Click the "Produce" button to produce a product, and sell it to earn money. Use your money to purchase workers to automate production and increase your profits! Each worker produces 1 product per second, and can also sell 1 product per second.</p>
-
-    <div class="buttonContainer">
-        <button id="produceButton">Produce</button>
-        <button id="sellButton">Sell</button>
-        <button id="hireButton">Hire Worker</button>
+    <h1>idle money clicker</h1>
+    <div class="container">
+        <div class="button-container">
+            <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
+            <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
+            <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
+        </div>
+        <div class="info-container">
+            <div class="info-row">
+                <p class="info-label">Money:</p>
+                <p class="info-value"><span id="money">0</span></p>
+            </div>
+            <div class="info-row">
+                <p class="info-label">Products:</p>
+                <p class="info-value"><span id="products">0</span></p>
+            </div>
+            <div class="info-row">
+                <p class="info-label">Workers:</p>
+                <p class="info-value"><span id="workers">0</span></p>
+            </div>
+        </div>
+        <div class="save-container">
+            <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
+            <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
+        </div>
     </div>
-
-    <div class="displayContainer">
-        <p id="money">Money: $0</p>
-        <p id="products">Products: 0</p>
-        <p id="workers">Workers: 0</p>
-    </div>
-
+    <audio id="backgroundMusic" loop>
+        <source src="audio/background_music.mp3" type="audio/mpeg">
+    </audio>
+    <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
