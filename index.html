@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>idle money clicker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <h1>idle money clicker</h1>
-    <div class="container">
-        <div class="button-container">
-            <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
-            <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
-            <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
-        </div>
-        <div class="info-container">
-            <div class="info-row">
-                <p class="info-label">Money:</p>
-                <p class="info-value"><span id="money">0</span></p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-eTlPpJNQwZjgkEhpvE+P09StQ2z8L6zWm9+i1CZkxu1T/s2KRJv9ZD4oBcW4ZjWJ" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="button-container">
+                <button id="moneyButton" class="button money-button">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span id="money">0</span> Money
+                </button>
+                <button id="produceButton" class="button">
+                    <i class="fas fa-cog"></i>
+                    <span id="products">0</span> Products
+                </button>
+                <button id="sellButton" class="button">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Sell
+                </button>
+                <button id="hireButton" class="button">
+                    <i class="fas fa-users"></i>
+                    <span id="workers">0</span> Workers
+                </button>
+                <div class="save-container">
+                    <button id="saveButton" class="button save-button">
+                        <i class="fas fa-save"></i>
+                        Save
+                    </button>
+                    <button id="loadButton" class="button load-button">
+                        <i class="fas fa-upload"></i>
+                        Load
+                    </button>
+                </div>
             </div>
-            <div class="info-row">
-                <p class="info-label">Products:</p>
-                <p class="info-value"><span id="products">0</span></p>
+            <div class="info-container">
+                <div class="info-row">
+                    <p class="info-label">Products:</p>
+                    <p class="info-value" id="products">0</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Money:</p>
+                    <p class="info-value" id="money">0</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Workers:</p>
+                    <p class="info-value" id="workers">0</p>
+                </div>
             </div>
-            <div class="info-row">
-                <p class="info-label">Workers:</p>
-                <p class="info-value"><span id="workers">0</span></p>
-            </div>
+            <audio id="backgroundMusic" src="background_music.mp3" loop></audio>
         </div>
-        <div class="save-container">
-            <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
-            <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
-        </div>
-    </div>
-    <audio id="backgroundMusic" loop>
-        <source src="audio/background_music.mp3" type="audio/mpeg">
-    </audio>
-    <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
