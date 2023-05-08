@@ -13,7 +13,7 @@ body {
     align-items: center; /* added */
     height: 100vh; /* added */
     margin: 0 auto; /* updated */
-    max-width: 800px;
+    max-width: 600px;
 }
 
 .button-container {
