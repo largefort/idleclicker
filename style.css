@@ -38,7 +38,7 @@ body {
 
     justify-content: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 
 }
 
@@ -144,13 +144,13 @@ body {
 
     justify-content: center;
 
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 
 }
 
 .save-container button {
 
-    margin: 6px;
+    margin: 3px;
 
 }
 
@@ -162,13 +162,13 @@ body {
 
 .save-button {
 
-    margin-right: 7px;
+    margin-right: 3px;
 
 }
 
 .load-button {
 
-    margin-right: 7px;
+    margin-right: 3px;
 
 }
 
