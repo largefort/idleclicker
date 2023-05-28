@@ -174,20 +174,6 @@ startProduction();
 
 startEarning();
 
-// Animate a DOM element's value from its current value to a new value
-
-function animateValue(element, newValue) {
-
-  const startValue = parseInt(element.textContent.replace(/,/g, ''));
-
-  const endValue = parseInt(newValue.replace(/,/g, ''));
-
-  const duration = 1000; // in milliseconds
-
-  const startTime = new Date().getTime();
-
-  const endTime = startTime + duration;
-
   function update() {
 
     const currentTime = new Date().getTime();
