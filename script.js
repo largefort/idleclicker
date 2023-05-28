@@ -202,7 +202,7 @@ function animateValue(element, newValue) {
 
     );
 
-    element.textContent = currentValue.toLocaleString('en-US');
+    element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
 
     if (currentTime < endTime) {
 
