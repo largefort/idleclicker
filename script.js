@@ -182,7 +182,7 @@ function animateValue(element, newValue) {
 
   const endValue = parseInt(newValue.replace(/,/g, ''));
 
-  const duration = 100; // in milleseconds
+  const duration = 1; // per seconds
 
   const startTime = new Date().getTime();
 
