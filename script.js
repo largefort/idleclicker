@@ -34,7 +34,7 @@ function loadGameState() {
 
     money = parseInt(localStorage.getItem("money"));
 
-    moneyElement.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(money);
+    moneyElement.textContent = money.toLocaleString('en-US');
 
   }
 
@@ -42,7 +42,7 @@ function loadGameState() {
 
     products = parseInt(localStorage.getItem("products"));
 
-    productsElement.textContent = new Intl.NumberFormat('en-US').format(products);
+    productsElement.textContent = products.toLocaleString('en-US');
 
   }
 
@@ -50,7 +50,7 @@ function loadGameState() {
 
     workers = parseInt(localStorage.getItem("workers"));
 
-    workersElement.textContent = new Intl.NumberFormat('en-US').format(workers);
+    workersElement.textContent = workers.toLocaleString('en-US');
 
   }
 
@@ -76,11 +76,11 @@ function saveGameState() {
 
 function updateGameState() {
 
-  animateValue(moneyElement, money);
+  animateValue(moneyElement, money.toLocaleString('en-US'));
 
-  animateValue(productsElement, products);
+  animateValue(productsElement, products.toLocaleString('en-US'));
 
-  animateValue(workersElement, workers);
+  animateValue(workersElement, workers.toLocaleString('en-US'));
 
 }
 
@@ -180,7 +180,7 @@ function animateValue(element, newValue) {
 
   const startValue = parseInt(element.textContent.replace(/,/g, ''));
 
-  const endValue = newValue;
+  const endValue = parseInt(newValue.replace(/,/g, ''));
 
   const duration = 1000; // in milliseconds
 
@@ -202,7 +202,7 @@ function animateValue(element, newValue) {
 
     );
 
-    element.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentValue);
+    element.textContent = currentValue.toLocaleString('en-US');
 
     if (currentTime < endTime) {
 
