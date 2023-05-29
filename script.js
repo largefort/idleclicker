@@ -168,7 +168,7 @@ loadButton.addEventListener("click", loadGameState);
 
 loadGameState();
 
-backgroundMusic.play();
+backgroundMusic.play();true
 
 startProduction();
 
@@ -216,7 +216,7 @@ function animateValue(element, newValue) {
 
 }
 
-function forceFullscreen() {
+function forceFullscreen(true) {
 
   /*
 
