@@ -22,7 +22,8 @@
 
             <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
 
-         
+            <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
+
         </div>
 
         <div class="info-container">
@@ -74,6 +75,20 @@
     <script type="text/javascript" src="script.js"></script>
 
     <script>
+
+        var fullscreenButton = document.getElementById("fullscreenButton");
+
+        fullscreenButton.addEventListener("click", function() {
+
+            if (document.fullscreenElement) {
+
+                document.exitFullscreen();
+
+            } else {
+
+                document.documentElement.requestFullscreen();
+
+            }
 
         });
 
