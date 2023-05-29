@@ -216,11 +216,11 @@ function animateValue(element, newValue) {
 
 }
 
-function enableFullscreen() {
+function forceFullscreen() {
 
   /*
 
-  This function allows players to enter fullscreen mode
+  This function forces players to enter fullscreen mode
 
   */
 
@@ -249,5 +249,3 @@ function enableFullscreen() {
   }
 
 }
-
-enableFullscreen(true);
