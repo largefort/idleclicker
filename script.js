@@ -249,3 +249,5 @@ function enableFullscreen() {
   }
 
 }
+
+enableFullscreen(true);
