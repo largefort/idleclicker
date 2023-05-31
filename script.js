@@ -2,7 +2,7 @@
 var money = 0;
 var products = 0;
 var workers = 0;
-var resolution = 100;
+var quality = 100;
 
 // Get HTML elements
 var moneyElement = document.getElementById("money");
@@ -14,7 +14,7 @@ var hireButton = document.getElementById("hireButton");
 var fullscreenButton = document.getElementById("fullscreenButton");
 var exportButton = document.getElementById("exportButton");
 var importButton = document.getElementById("importButton");
-var resolutionSlider = document.getElementById("resolutionSlider");
+var qualitySlider = document.getElementById("qualitySlider");
 
 // Add event listeners
 produceButton.addEventListener("click", function() {
@@ -52,8 +52,8 @@ importButton.addEventListener("change", function(evt) {
   importSave(evt.target.files[0]);
 });
 
-resolutionSlider.addEventListener("input", function() {
-  resolution = resolutionSlider.value;
+qualitySlider.addEventListener("input", function() {
+  quality = qualitySlider.value;
   updateDisplay();
 });
 
@@ -76,7 +76,7 @@ function updateDisplay() {
   moneyElement.innerText = money;
   productsElement.innerText = products;
   workersElement.innerText = workers;
-  document.body.style.zoom = resolution + "%";
+  document.body.style.setProperty('--quality', quality + "%");
 
   // Produce products if there are workers
   if (workers > 0) {
