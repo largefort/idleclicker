@@ -16,8 +16,8 @@
       <button id="importButton" class="button"><i class="fas fa-file-import"></i> Import Save</button>
     </div>
     <div class="slider-container">
-      <label for="resolutionSlider">Screen Resolution:</label>
-      <input type="range" id="resolutionSlider" min="0" max="100" value="100">
+      <label for="qualitySlider">Quality:</label>
+      <input type="range" id="qualitySlider" min="0" max="100" value="100">
     </div>
     <div class="info-container">
       <div class="info-row">
@@ -38,34 +38,5 @@
     </audio>
     <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
-    <script>
-      var fullscreenButton = document.getElementById("fullscreenButton");
-      fullscreenButton.addEventListener("click", function() {
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        } else {
-          document.documentElement.requestFullscreen();
-        }
-      });
-      var exportButton = document.getElementById("exportButton");
-      exportButton.addEventListener("click", function() {
-        var saveData = JSON.stringify({money: money, products: products, workers: workers});
-        var saveFile = new Blob([saveData], {type: "application/json"});
-        var saveURL = URL.createObjectURL(saveFile);
-        var saveLink = document.createElement("a");
-        saveLink.href = saveURL;
-        saveLink.download = "game-save.json";
-        document.body.appendChild(saveLink);
-        saveLink.click();
-        document.body.removeChild(saveLink);
-        URL.revokeObjectURL(saveURL);
-      });
-      var importButton = document.getElementById("importButton");
-      importButton.addEventListener("change", function(evt) {
-        var selectedFile = evt.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var saveData = JSON.parse(event.target.result);
-          money = saveData.money;
-          products = saveData.products;
-          workers = saveData.work
+  </body>
+</html>
