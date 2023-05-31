@@ -2,6 +2,7 @@
 var money = 0;
 var products = 0;
 var workers = 0;
+var resolution = 100;
 
 // Get HTML elements
 var moneyElement = document.getElementById("money");
@@ -11,6 +12,9 @@ var produceButton = document.getElementById("produceButton");
 var sellButton = document.getElementById("sellButton");
 var hireButton = document.getElementById("hireButton");
 var fullscreenButton = document.getElementById("fullscreenButton");
+var exportButton = document.getElementById("exportButton");
+var importButton = document.getElementById("importButton");
+var resolutionSlider = document.getElementById("resolutionSlider");
 
 // Add event listeners
 produceButton.addEventListener("click", function() {
@@ -40,31 +44,18 @@ fullscreenButton.addEventListener("click", function() {
   toggleFullscreen();
 });
 
-// Export and import save functions
-function exportSave() {
-  var saveData = JSON.stringify({money: money, products: products, workers: workers});
-  var saveFile = new Blob([saveData], {type: "application/json"});
-  var saveURL = URL.createObjectURL(saveFile);
-  var saveLink = document.createElement("a");
-  saveLink.href = saveURL;
-  saveLink.download = "game-save.json";
-  document.body.appendChild(saveLink);
-  saveLink.click();
-  document.body.removeChild(saveLink);
-  URL.revokeObjectURL(saveURL);
-}
+exportButton.addEventListener("click", function() {
+  exportSave();
+});
 
-function importSave(file) {
-  var reader = new FileReader();
-  reader.onload = function(event) {
-    var saveData = JSON.parse(event.target.result);
-    money = saveData.money;
-    products = saveData.products;
-    workers = saveData.workers;
-    updateDisplay();
-  };
-  reader.readAsText(file);
-}
+importButton.addEventListener("change", function(evt) {
+  importSave(evt.target.files[0]);
+});
+
+resolutionSlider.addEventListener("input", function() {
+  resolution = resolutionSlider.value;
+  updateDisplay();
+});
 
 // Toggle fullscreen function
 function toggleFullscreen() {
@@ -85,6 +76,7 @@ function updateDisplay() {
   moneyElement.innerText = money;
   productsElement.innerText = products;
   workersElement.innerText = workers;
+  document.body.style.zoom = resolution + "%";
 
   // Produce products if there are workers
   if (workers > 0) {
