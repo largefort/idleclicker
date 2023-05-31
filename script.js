@@ -86,9 +86,16 @@ function updateDisplay() {
   productsElement.innerText = products;
   workersElement.innerText = workers;
 
-  // Produce money if there are workers
+  // Produce products if there are workers
   if (workers > 0) {
-    money += workers;
+    products += workers;
+    updateDisplay();
+  }
+
+  // Sell products if there are products
+  if (products > 0) {
+    products--;
+    money++;
     updateDisplay();
   }
 }
