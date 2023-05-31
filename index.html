@@ -15,6 +15,10 @@
       <button id="exportButton" class="button"><i class="fas fa-file-export"></i> Export Save</button>
       <button id="importButton" class="button"><i class="fas fa-file-import"></i> Import Save</button>
     </div>
+    <div class="slider-container">
+      <label for="resolutionSlider">Screen Resolution:</label>
+      <input type="range" id="resolutionSlider" min="0" max="100" value="100">
+    </div>
     <div class="info-container">
       <div class="info-row">
         <p class="info-label">Money:</p>
@@ -64,11 +68,4 @@
           var saveData = JSON.parse(event.target.result);
           money = saveData.money;
           products = saveData.products;
-          workers = saveData.workers;
-          updateDisplay();
-        };
-        reader.readAsText(selectedFile);
-      });
-    </script>
-  </body>
-</html>
+          workers = saveData.work
