@@ -1,251 +1,94 @@
-// Game state variables
+// Initialize variables
+var money = 0;
+var products = 0;
+var workers = 0;
 
-let money = 0;
+// Get HTML elements
+var moneyElement = document.getElementById("money");
+var productsElement = document.getElementById("products");
+var workersElement = document.getElementById("workers");
+var produceButton = document.getElementById("produceButton");
+var sellButton = document.getElementById("sellButton");
+var hireButton = document.getElementById("hireButton");
+var fullscreenButton = document.getElementById("fullscreenButton");
 
-let products = 0;
-
-let workers = 0;
-
-// DOM element variables
-
-const moneyElement = document.getElementById("money");
-
-const productsElement = document.getElementById("products");
-
-const workersElement = document.getElementById("workers");
-
-const produceButton = document.getElementById("produceButton");
-
-const sellButton = document.getElementById("sellButton");
-
-const hireButton = document.getElementById("hireButton");
-
-const saveButton = document.getElementById("saveButton");
-
-const loadButton = document.getElementById("loadButton");
-
-const backgroundMusic = document.getElementById("backgroundMusic");
-
-// Load game state from local storage
-
-function loadGameState() {
-
-  if (localStorage.getItem("money")) {
-
-    money = parseInt(localStorage.getItem("money"));
-
-    moneyElement.textContent = money.toLocaleString('en-US');
-
+// Add event listeners
+produceButton.addEventListener("click", function() {
+  if (workers > 0) {
+    products++;
+    updateDisplay();
   }
+});
 
-  if (localStorage.getItem("products")) {
-
-    products = parseInt(localStorage.getItem("products"));
-
-    productsElement.textContent = products.toLocaleString('en-US');
-
-  }
-
-  if (localStorage.getItem("workers")) {
-
-    workers = parseInt(localStorage.getItem("workers"));
-
-    workersElement.textContent = workers.toLocaleString('en-US');
-
-  }
-
-  alert("Game loaded!");
-
-}
-
-// Save game state to local storage
-
-function saveGameState() {
-
-  localStorage.setItem("money", money);
-
-  localStorage.setItem("products", products);
-
-  localStorage.setItem("workers", workers);
-
-  alert("Game saved!");
-
-}
-
-// Update game state and UI with new values
-
-function updateGameState() {
-
-  animateValue(moneyElement, money.toLocaleString('en-US'));
-
-  animateValue(productsElement, products.toLocaleString('en-US'));
-
-  animateValue(workersElement, workers.toLocaleString('en-US'));
-
-}
-
-// Produce products
-
-function produce(amount) {
-
-  products += amount;
-
-  updateGameState();
-
-}
-
-// Sell products
-
-function sell() {
-
+sellButton.addEventListener("click", function() {
   if (products > 0) {
-
     products--;
-
-    money += 10;
-
-    updateGameState();
-
+    money++;
+    updateDisplay();
   }
+});
 
-}
-
-// Hire a worker
-
-function hireWorker() {
-
-  if (money >= 100) {
-
-    money -= 100;
-
+hireButton.addEventListener("click", function() {
+  if (money >= 10) {
+    money -= 10;
     workers++;
-
-    updateGameState();
-
+    updateDisplay();
   }
+});
 
+fullscreenButton.addEventListener("click", function() {
+  toggleFullscreen();
+});
+
+// Export and import save functions
+function exportSave() {
+  var saveData = JSON.stringify({money: money, products: products, workers: workers});
+  var saveFile = new Blob([saveData], {type: "application/json"});
+  var saveURL = URL.createObjectURL(saveFile);
+  var saveLink = document.createElement("a");
+  saveLink.href = saveURL;
+  saveLink.download = "game-save.json";
+  document.body.appendChild(saveLink);
+  saveLink.click();
+  document.body.removeChild(saveLink);
+  URL.revokeObjectURL(saveURL);
 }
 
-// Function to produce products over time
-
-function startProduction() {
-
-  setInterval(() => {
-
-    produce(workers);
-
-  }, 1000);
-
+function importSave(file) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    var saveData = JSON.parse(event.target.result);
+    money = saveData.money;
+    products = saveData.products;
+    workers = saveData.workers;
+    updateDisplay();
+  };
+  reader.readAsText(file);
 }
 
-// Function to earn money over time
-
-function startEarning() {
-
-  setInterval(() => {
-
-    money += workers * 10;
-
-    updateGameState();
-
-  }, 3000);
-
-}
-
-// Event listeners for buttons
-
-produceButton.addEventListener("click", () => produce(1));
-
-sellButton.addEventListener("click", sell);
-
-hireButton.addEventListener("click", hireWorker);
-
-saveButton.addEventListener("click", saveGameState);
-
-loadButton.addEventListener("click", loadGameState);
-
-// Load game state, start playing music, and start production and earning
-
-loadGameState();
-
-backgroundMusic.play();
-
-startProduction();
-
-startEarning();
-
-// Animate a DOM element's value from its current value to a new value
-
-function animateValue(element, newValue) {
-
-  const startValue = parseInt(element.textContent.replace(/,/g, ''));
-
-  const endValue = parseInt(newValue.replace(/,/g, ''));
-
-  const duration = 1; // per seconds
-
-  const startTime = new Date().getTime();
-
-  const endTime = startTime + duration;
-
-  function update() {
-
-    const currentTime = new Date().getTime();
-
-    const remainingTime = Math.max(endTime - currentTime, 0);
-
-    const elapsedTime = duration - remainingTime;
-
-    const currentValue = Math.round(
-
-      startValue + (endValue - startValue) * elapsedTime / duration
-
-    );
-
-    element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
-
-    if (currentTime < endTime) {
-
-      requestAnimationFrame(update);
-
-    }
-
+// Toggle fullscreen function
+function toggleFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
   }
-
-  requestAnimationFrame(update);
-
 }
 
+// Force fullscreen function
 function forceFullscreen() {
+  document.documentElement.requestFullscreen();
+}
 
-  /*
+// Update display function
+function updateDisplay() {
+  moneyElement.innerText = money;
+  productsElement.innerText = products;
+  workersElement.innerText = workers;
 
-  This function forces players to enter fullscreen mode
-
-  */
-
-  try {
-
-    const elem = document.documentElement;
-
-    if (elem.requestFullscreen) {
-
-      elem.requestFullscreen();
-
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-
-      elem.webkitRequestFullscreen();
-
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-
-      elem.msRequestFullscreen();
-
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
+  // Produce money if there are workers
+  if (workers > 0) {
+    money += workers;
+    updateDisplay();
   }
-
 }
