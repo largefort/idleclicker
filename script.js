@@ -215,39 +215,3 @@ function animateValue(element, newValue) {
   requestAnimationFrame(update);
 
 }
-
-function forceFullscreen() {
-
-  /*
-
-  This function forces players to enter fullscreen mode
-
-  */
-
-  try {
-
-    const elem = document.documentElement;
-
-    if (elem.requestFullscreen) {
-
-      elem.requestFullscreen();
-
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-
-      elem.webkitRequestFullscreen();
-
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-
-      elem.msRequestFullscreen();
-
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-  }
-
-}
-
-forceFullscreen();
