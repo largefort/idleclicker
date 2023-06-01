@@ -168,7 +168,7 @@ loadButton.addEventListener("click", loadGameState);
 
 loadGameState();
 
-backgroundMusic.play();
+backgroundMusic.play(true);
 
 startProduction();
 
