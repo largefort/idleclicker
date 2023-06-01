@@ -26,6 +26,8 @@
 
             <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
 
+            <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
+
         </div>
 
         <div class="info-container">
@@ -57,7 +59,7 @@
         </div>
 
         <div class="save-container">
-		
+
             <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
 
             <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
@@ -65,9 +67,12 @@
         </div>
 
     </div>
-<audio autoplay loop id="musicPlayer">
-	<source src="https://github.com/doomguyslays/idleclicker/raw/main/Cifi.mp3" autoplay="true" width="400" height="300" name="musicPlayer" id="musicPlayer">
-</audio>
+
+    <audio id="backgroundMusic" loop>
+
+        <source src="audio/background_music.mp3" type="audio/mpeg">
+
+    </audio>
 
     <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
 
@@ -75,31 +80,21 @@
 
     <script>
 
-        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
         var fullscreenButton = document.getElementById("fullscreenButton");
 
-        if (isMobile) {
+        fullscreenButton.addEventListener("click", function() {
 
-            fullscreenButton.style.display = "none";
+            if (document.fullscreenElement) {
 
-        } else {
+                document.exitFullscreen();
 
-            fullscreenButton.addEventListener("click", function() {
+            } else {
 
-                if (document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
 
-                    document.exitFullscreen();
+            }
 
-                } else {
-
-                    document.documentElement.requestFullscreen();
-
-                }
-
-            });
-
-        }
+        });
 
     </script>
 
