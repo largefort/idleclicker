@@ -1,60 +1,86 @@
-/* General styles */
+/* Set default font size and line height */
+html {
+  font-size: 18px;
+  line-height: 1.5;
+}
 
+/* Set default font family, background color, and text color */
 body {
   background-color: #333;
   color: #fff;
-  font-family: 'minecraft', cursive;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Container styles */
-
+/* Center the game container and set max width */
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
+  height: 80vh;
   margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
+  max-width: 1200px;
 }
 
-/* Button styles */
-
+/* Style game buttons */
 .button-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .button {
   align-items: center;
   background-color: #fc0;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   color: #333;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 24px;
-  height: 120px;
+  font-size: 28px;
+  height: 150px;
   justify-content: center;
-  margin: 10px;
-  padding: 10px;
+  margin: 20px;
+  padding: 20px;
   text-align: center;
-  width: 150px;
-  transition: background-color 0.2s ease-in-out;
+  width: 200px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Add dollar pop-up effect to sell button */
+#sellButton:hover:after {
+  content: "+$1";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: #4CAF50;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+#sellButton:hover:after {
+  top: -70px;
+  opacity: 1;
 }
 
 .button:hover {
   background-color: #f90;
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
 .button:active {
   background-color: #f60;
+  transform: translateY(0px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .button i {
@@ -62,27 +88,23 @@ body {
   margin-bottom: 10px;
 }
 
-/* Info styles */
-
+/* Style game information */
 .info-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .info-row {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 20px;
+  margin: 20px;
 }
 
 .info-label {
   font-size: 36px;
   margin: 0 10px;
-  min-width: 150px;
-  text-align: right;
 }
 
 .info-value {
@@ -91,42 +113,26 @@ body {
   margin: 0;
 }
 
-/* Save styles */
-
+/* Style save/load game buttons */
 .save-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .save-container button {
-  background-color: #fc0;
-  border: none;
-  border-radius: 3px;
-  color: #333;
-  cursor: pointer;
-  font-size: 24px;
   margin: 10px;
-  padding: 10px;
-  transition: background-color 0.2s ease-in-out;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 2px 4px;
 }
 
 .save-container button:hover {
-  background-color: #f90;
-}
-
-.save-container button:active {
-  background-color: #f60;
-}
-
-.money-button {
-  margin-right: 8px;
-}
-
-.save-button {
-  margin-right: 3px;
-}
-
-.load-button {
-  margin-right: 3px;
-}
+  background-color: #3
