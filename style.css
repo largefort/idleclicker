@@ -50,6 +50,25 @@ body {
   width: 200px;
   transition: all 0.2s ease-in-out;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  position: relative; /* added */
+}
+
+/* Add dollar pop-up effect to sell button */
+#sellButton:hover:after {
+  content: "+$1";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: #4CAF50;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+#sellButton:hover:after {
+  top: -70px;
+  opacity: 1;
 }
 
 .button:hover {
@@ -112,16 +131,4 @@ body {
   background-color: #4CAF50;
   color: white;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.save-container button:hover {
-  background-color: #3e8e41;
-  transform: translateY(-5px);
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
-}
-
-.save-container button:active {
-  background-color: #357e3a;
-  transform: translateY(0px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 4px
