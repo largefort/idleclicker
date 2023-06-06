@@ -85,12 +85,12 @@ body {
 }
 
 .info-label {
-  font-size: 36px;
+  font-size: 20px;
   margin: 0 10px;
 }
 
 .info-value {
-  font-size: 36px;
+  font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
