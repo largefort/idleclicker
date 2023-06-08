@@ -78,6 +78,8 @@
 
       <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
 
+      <button id="statsButton" class="button"><i class="fas fa-chart-bar"></i> Statistics</button>
+
       <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
 
     </div>
@@ -175,6 +177,20 @@
           document.documentElement.requestFullscreen();
 
         }
+
+      });
+
+      var statsButton = document.getElementById("statsButton");
+
+      statsButton.addEventListener("click", function() {
+
+        var money = document.getElementById("money").textContent;
+
+        var products = document.getElementById("products").textContent;
+
+        var workers = document.getElementById("workers").textContent;
+
+        alert("Money: " + money + "\nProducts: " + products + "\nWorkers: " + workers);
 
       });
 
