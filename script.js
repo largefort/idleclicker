@@ -26,16 +26,6 @@ const loadButton = document.getElementById("loadButton");
 
 const backgroundMusic = document.getElementById("backgroundMusic");
 
-const statisticsButton = document.getElementById("statisticsButton");
-
-const statisticsModal = document.getElementById("statisticsModal");
-
-const moneyStat = document.getElementById("moneyStat");
-
-const productsStat = document.getElementById("productsStat");
-
-const workersStat = document.getElementById("workersStat");
-
 // Load game state from local storage
 
 function loadGameState() {
@@ -173,13 +163,6 @@ hireButton.addEventListener("click", hireWorker);
 saveButton.addEventListener("click", saveGameState);
 
 loadButton.addEventListener("click", loadGameState);
-
-statisticsButton.addEventListener("click", () => {
-  moneyStat.textContent = money.toLocaleString('en-US');
-  productsStat.textContent = products.toLocaleString('en-US');
-  workersStat.textContent = workers.toLocaleString('en-US');
-  statisticsModal.style.display = "block";
-});
 
 // Load game state, start playing music, and start production and earning
 
