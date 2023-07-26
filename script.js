@@ -182,7 +182,7 @@ function animateValue(element, newValue) {
 
   const endValue = parseInt(newValue.replace(/,/g, ''));
 
-  const duration = 1; // per seconds
+  const duration = 500; // per seconds
 
   const startTime = new Date().getTime();
 
@@ -234,11 +234,11 @@ function enableFullscreen() {
 
     } else if (elem.webkitRequestFullscreen) { /* Safari */
 
-      elem.webkitRequestFullscreen();
+      elem.webkitRequestFullscreen(); /* Chrome */
 
     } else if (elem.msRequestFullscreen) { /* IE11 */
 
-      elem.msRequestFullscreen();
+      elem.msRequestFullscreen(); */
 
     }
 
