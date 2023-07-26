@@ -182,7 +182,7 @@ function animateValue(element, newValue) {
 
   const endValue = parseInt(newValue.replace(/,/g, ''));
 
-  const duration = 500; // per seconds
+  const duration = 1000; // per seconds
 
   const startTime = new Date().getTime();
 
@@ -192,7 +192,7 @@ function animateValue(element, newValue) {
 
     const currentTime = new Date().getTime();
 
-    const remainingTime = Math.max(endTime - currentTime, 0);
+    const remainingTime = Math.max(endTime - currentTime, 1);
 
     const elapsedTime = duration - remainingTime;
 
