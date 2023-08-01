@@ -1,251 +1,114 @@
-// Game state variables
+var money = 100;
+var moneyPerSecond = 0;
+var moneyPerClick = 1;
+var moneyPerClickUpgrade = 10;
+var moneyPerSecondUpgrade = 1;
+var moneyPerClickUpgradeCost = 10;
+var moneyPerSecondUpgradeCost = 100;
 
-let money = 0;
-
-let products = 0;
-
-let workers = 0;
-
-// DOM element variables
-
-const moneyElement = document.getElementById("money");
-
-const productsElement = document.getElementById("products");
-
-const workersElement = document.getElementById("workers");
-
-const produceButton = document.getElementById("produceButton");
-
-const sellButton = document.getElementById("sellButton");
-
-const hireButton = document.getElementById("hireButton");
-
-const saveButton = document.getElementById("saveButton");
-
-const loadButton = document.getElementById("loadButton");
-
-const backgroundMusic = document.getElementById("backgroundMusic");
-
-// Load game state from local storage
-
-function loadGameState() {
-
-  if (localStorage.getItem("money")) {
-
-    money = parseInt(localStorage.getItem("money"));
-
-    moneyElement.textContent = money.toLocaleString('en-US');
-
+var moneyPerClickUpgradeButton = document.createElement('button');
+moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
+moneyPerClickUpgradeButton.onclick = function() {
+  if (money >= moneyPerClickUpgradeCost) {
+    money -= moneyPerClickUpgradeCost;
+    moneyPerClickUpgrade += 1;
+    moneyPerClickUpgradeCost *= 2;
+    moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
   }
+};
+document.body.appendChild(moneyPerClickUpgradeButton);
 
-  if (localStorage.getItem("products")) {
-
-    products = parseInt(localStorage.getItem("products"));
-
-    productsElement.textContent = products.toLocaleString('en-US');
-
+var moneyPerSecondUpgradeButton = document.createElement('button');
+moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
+moneyPerSecondUpgradeButton.onclick = function() {
+  if (money >= moneyPerSecondUpgradeCost) {
+    money -= moneyPerSecondUpgradeCost;
+    moneyPerSecondUpgrade += 1;
+    moneyPerSecondUpgradeCost *= 2;
+    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
   }
-
-  if (localStorage.getItem("workers")) {
-
-    workers = parseInt(localStorage.getItem("workers"));
-
-    workersElement.textContent = workers.toLocaleString('en-US');
-
-  }
-
-  alert("Game loaded!");
-
-}
-
-// Save game state to local storage
-
-function saveGameState() {
-
-  localStorage.setItem("money", money);
-
-  localStorage.setItem("products", products);
-
-  localStorage.setItem("workers", workers);
-
-  alert("Game saved!");
-
-}
-
-// Update game state and UI with new values
-
-function updateGameState() {
-
-  animateValue(moneyElement, money.toLocaleString('en-US'));
-
-  animateValue(productsElement, products.toLocaleString('en-US'));
-
-  animateValue(workersElement, workers.toLocaleString('en-US'));
-
-}
-
-// Produce products
-
-function produce(amount) {
-
-  products += amount;
-
-  updateGameState();
-
-}
-
-// Sell products
-
-function sell() {
-
-  if (products > 0) {
-
-    products--;
-
-    money += 10;
-
-    updateGameState();
-
-  }
-
-}
-
-// Hire a worker
-
-function hireWorker() {
-
-  if (money >= 100) {
-
-    money -= 100;
-
-    workers++;
-
-    updateGameState();
-
-  }
-
-}
-
-// Function to produce products over time
-
-function startProduction() {
-
-  setInterval(() => {
-
-    produce(workers);
-
-  }, 1000);
-
-}
-
-// Function to earn money over time
-
-function startEarning() {
-
-  setInterval(() => {
-
-    money += workers * 10;
-
-    updateGameState();
-
-  }, 3000);
-
-}
-
-// Event listeners for buttons
-
-produceButton.addEventListener("click", () => produce(1));
-
-sellButton.addEventListener("click", sell);
-
-hireButton.addEventListener("click", hireWorker);
-
-saveButton.addEventListener("click", saveGameState);
-
-loadButton.addEventListener("click", loadGameState);
-
-// Load game state, start playing music, and start production and earning
-
-loadGameState();
-
-backgroundMusic.play();
-
-startProduction();
-
-startEarning();
-
-// Animate a DOM element's value from its current value to a new value
-
-function animateValue(element, newValue) {
-
-  const startValue = parseInt(element.textContent.replace(/,/g, ''));
-
-  const endValue = parseInt(newValue.replace(/,/g, ''));
-
-  const duration = 1000; // per seconds
-
-  const startTime = new Date().getTime();
-
-  const endTime = startTime + duration;
-
-  function update() {
-
-    const currentTime = new Date().getTime();
-
-    const remainingTime = Math.max(endTime - currentTime, 1);
-
-    const elapsedTime = duration - remainingTime;
-
-    const currentValue = Math.round(
-
-      startValue + (endValue - startValue) * elapsedTime / duration
-
-    );
-
-    element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
-
-    if (currentTime < endTime) {
-
-      requestAnimationFrame(update);
-
-    }
-
-  }
-
-  requestAnimationFrame(update);
-
-}
-
-function enableFullscreen() {
-
-  /*
-
-  This function allows players to enter fullscreen mode
-
-  */
-
-  try {
-
-    const elem = document.documentElement;
-
-    if (elem.requestFullscreen) {
-
-      elem.requestFullscreen();
-
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-
-      elem.webkitRequestFullscreen(); /* Chrome */
-
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-
-      elem.msRequestFullscreen(); */
-
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-  }
-
-}
+};
+document.body.appendChild(moneyPerSecondUpgradeButton);
+
+var moneyDisplay = document.createElement('div');
+moneyDisplay.innerHTML = 'Money: ' + money;
+document.body.appendChild(moneyDisplay);
+
+var moneyPerSecondDisplay = document.createElement('div');
+moneyPerSecondDisplay.innerHTML = 'Money Per Second: ' + moneyPerSecond;
+document.body.appendChild(moneyPerSecondDisplay);
+
+var moneyPerClickDisplay = document.createElement('div');
+moneyPerClickDisplay.innerHTML = 'Money Per Click: ' + moneyPerClick;
+document.body.appendChild(moneyPerClickDisplay);
+
+var moneyPerClickUpgradeDisplay = document.createElement('div');
+moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerClickUpgrade;
+document.body.appendChild(moneyPerClickUpgradeDisplay);
+
+var moneyPerSecondUpgradeDisplay = document.createElement('div');
+moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
+document.body.appendChild(moneyPerSecondUpgradeDisplay);
+
+var moneyPerClickUpgradeCostDisplay = document.createElement('div');
+moneyPerClickUpgradeCostDisplay.innerHTML = 'Money Per Click Upgrade Cost: ' + moneyPerClickUpgradeCost;
+document.body.appendChild(moneyPerClickUpgradeCostDisplay);
+
+var moneyPerSecondUpgradeCostDisplay = document.createElement('div');
+moneyPerSecondUpgradeCostDisplay.innerHTML = 'Money Per Second Upgrade Cost: ' + moneyPerSecondUpgradeCost;
+document.body.appendChild(moneyPerSecondUpgradeCostDisplay);
+
+var moneyButton = document.createElement('button');
+moneyButton.innerHTML = 'Click for Money';
+moneyButton.onclick = function() {
+  money += moneyPerClick + moneyPerClickUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
+};
+document.body.appendChild(moneyButton);
+
+setInterval(function() {
+  money += moneyPerSecond + moneyPerSecondUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
+}, 1000);
+
+var gameTheme = document.createElement('div');
+gameTheme.innerHTML = '<style>body { background-color: black; color: white; }</style>';
+document.body.appendChild(gameTheme);
+
+var save = function() {
+  localStorage.setItem('money', money);
+  localStorage.setItem('moneyPerSecond', moneyPerSecond);
+  localStorage.setItem('moneyPerClick', moneyPerClick);
+  localStorage.setItem('moneyPerClickUpgrade', moneyPerClickUpgrade);
+  localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
+  localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
+  localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
+};
+
+var load = function() {
+  money = parseInt(localStorage.getItem('money'));
+  moneyPerSecond = parseInt(localStorage.getItem('moneyPerSecond'));
+  moneyPerClick = parseInt(localStorage.getItem('moneyPerClick'));
+  moneyPerClickUpgrade = parseInt(localStorage.getItem('moneyPerClickUpgrade'));
+  moneyPerSecondUpgrade = parseInt(localStorage.getItem('moneyPerSecondUpgrade'));
+  moneyPerClickUpgradeCost = parseInt(localStorage.getItem('moneyPerClickUpgradeCost'));
+  moneyPerSecondUpgradeCost = parseInt(localStorage.getItem('moneyPerSecondUpgradeCost'));
+};
+
+var saveButton = document.createElement('button');
+saveButton.innerHTML = 'Save';
+saveButton.onclick = function() {
+  save();
+};
+document.body.appendChild(saveButton);
+
+var loadButton = document.createElement('button');
+loadButton.innerHTML = 'Load';
+loadButton.onclick = function() {
+  load();
+};
+document.body.appendChild(loadButton);
+
+var graphicsSettings = document.createElement('div');
+graphicsSettings.innerHTML = '<style>button { background-color: black; color: white; }</style>';
+document.body.appendChild(graphicsSettings);
